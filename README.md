@@ -1,6 +1,5 @@
 # Machine_learning
 
-# Machine Learning - CSGO Match Analysis
 
 Este repositorio contiene el desarrollo de un proyecto de Machine Learning aplicado a partidas del videojuego **CS:GO**. Se exploraron distintos enfoques de regresión y clasificación con el objetivo de analizar el rendimiento de los jugadores y predecir resultados.
 
