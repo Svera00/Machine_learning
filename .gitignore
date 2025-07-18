@@ -1,0 +1,29 @@
+# Entornos virtuales
+venv/
+.env/
+
+# Python compilado
+__pycache__/
+*.pyc
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Archivos de construcción
+dist/
+build/
+*.egg-info/
+
+# Carpetas temporales de desarrollo
+instance/
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+app/models/csgo_pipeline.pkl
+*.csv
+temp-clean-clone/

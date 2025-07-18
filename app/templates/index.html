@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predicciones CSGO</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Predicciones CSGO</h1>
+
+    <form method="post" action="/predict">
+      <div class="field-group">
+        <label for="model_type" class="visually-hidden">Tipo de Modelo</label>
+        <select id="model_type" name="model_type" required>
+          <option value="classification" {% if selected_model == 'classification' %}selected{% endif %}>Clasificación: ¿Ganaste el Match?</option>
+          <option value="regression" {% if selected_model == 'regression' %}selected{% endif %}>Regresión: MatchKills estimados</option>
+        </select>
+      </div>
+
+      <!-- Campos para CLASIFICACIÓN -->
+      <div id="classification-fields" class="model-fields">
+        {% for feature, info in features_info.items() %}
+          {% set minv = info[0] %}
+          {% set maxv = info[1] %}
+          {% set question = info[2] %}
+          <div class="field-group">
+            <label for="{{ feature }}" class="question">{{ question }}</label>
+            <input
+              type="number"
+              step="any"
+              id="{{ feature }}"
+              name="{{ feature }}"
+              min="{{ minv }}"
+              max="{{ maxv }}"
+              placeholder="Mín: {{ minv }} | Máx: {{ maxv }}"
+              value="{{ input_data[feature] if feature in input_data else '' }}">
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Campo para REGRESIÓN -->
+      <div id="regression-fields" class="model-fields">
+        {% set minv = features_info['MatchHeadshots'][0] %}
+        {% set maxv = features_info['MatchHeadshots'][1] %}
+        {% set question = features_info['MatchHeadshots'][2] %}
+        <div class="field-group">
+          <label for="MatchHeadshots_reg" class="question">{{ question }}</label>
+          <input
+            type="number"
+            step="any"
+            id="MatchHeadshots_reg"
+            name="MatchHeadshots_reg"
+            min="{{ minv }}"
+            max="{{ maxv }}"
+            placeholder="Mín: {{ minv }} | Máx: {{ maxv }}"
+            value="{{ input_data['MatchHeadshots_reg'] if 'MatchHeadshots_reg' in input_data else '' }}">
+        </div>
+      </div>
+
+      <button type="submit">Predecir</button>
+    </form>
+
+    {% if prediction %}
+      <div class="alert"><strong>Resultado:</strong> {{ prediction }}</div>
+    {% endif %}
+  </div>
+
+  <script>
+    function toggleFields() {
+      const sel = document.getElementById('model_type').value;
+      const clf = document.getElementById('classification-fields');
+      const reg = document.getElementById('regression-fields');
+      clf.style.display = sel === 'classification' ? 'block' : 'none';
+      reg.style.display = sel === 'regression' ? 'block' : 'none';
+    }
+    document.getElementById('model_type').addEventListener('change', toggleFields);
+    toggleFields();
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+body {
+  background-color: #15202B;
+  color: #FFFFFF;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.card {
+  background: #192734;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.field-group {
+  margin-bottom: 1rem;
+}
+
+.question {
+  display: block;
+  font-size: 0.85rem;
+  color: #FFFFFF; 
+  margin-bottom: 0.25rem; 
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  background: #22303C;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: #8899A6;
+  font-size: 0.85rem;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #1DA1F2;
+}
+
+button {
+  width: 100%;
+  background: #1DA1F2;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #1991DA;
+}
+
+.alert {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  background: #22303C;
+  color: #FFFFFF;
+  text-align: center;
+}
